@@ -15,6 +15,16 @@ import { AboutComponent } from './restaurant/about/about.component';
 import { StuffComponent } from './restaurant/stuff/stuff.component';
 import { GalleryComponent } from './restaurant/gallery/gallery.component';
 import { ContactComponent } from './restaurant/contact/contact.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { InscriptionComponent } from './inscription/inscription.component';
+import { NavAdminComponent } from './nav-admin/nav-admin.component';
+import { AdminNavComponent } from './admin-nav/admin-nav.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { AuthentificationComponent } from './authentification/authentification.component';
+import { GestionUserComponent } from './gestion-user/gestion-user.component';
+import { DetailReclamationComponent } from './detail-reclamation/detail-reclamation.component';
+
 
 @NgModule({
   declarations: [
@@ -30,11 +40,24 @@ import { ContactComponent } from './restaurant/contact/contact.component';
     AboutComponent,
     StuffComponent,
     GalleryComponent,
-    ContactComponent
+    ContactComponent,
+    
+    InscriptionComponent,
+    NavAdminComponent,
+    AdminNavComponent,
+    
+    EditUserComponent,
+         AuthentificationComponent,
+         GestionUserComponent,
+         DetailReclamationComponent,
+    
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

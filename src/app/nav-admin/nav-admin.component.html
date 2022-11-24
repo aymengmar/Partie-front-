@@ -1,0 +1,148 @@
+<div class="   header-nav ms-auto ">
+    <ul class="d-flex align-items-center">
+    
+      <li class="nav-item dropdown pe-3">
+  
+        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+          <img src="assets/images/DSC_9802 4id 4.jpg" alt="Profile" class="rounded-circle">
+          <span class="d-none d-md-block dropdown-toggle ps-2">{{User.Login}}</span>
+        </a><!-- End Profile Iamge Icon -->
+       
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile header-nav ms-auto">
+          <li class="dropdown-header">
+            <h6>  {{User.prenom}}  {{User.nom}} </h6>
+            <span>{{User.statut}}</span>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+  
+          <li>
+            <a class="dropdown-item d-flex align-items-center" routerLink="/gestionUser">
+              <i class="bi bi-person"></i>
+              <span>My Home</span>
+            </a>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+  
+          <li>
+            <a class="dropdown-item d-flex align-items-center" routerLink="/editprofile/{{User.Login}}">
+              <i class="bi bi-gear"></i>
+              <span>Account Settings</span>
+            </a>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+  
+          <li>
+            <a class="dropdown-item d-flex align-items-center" routerLink="/chart">
+              <i class="bi bi-question-circle"></i>
+              <span>Statistic</span>
+            </a>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+  
+          <li>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+              <i class="bi bi-box-arrow-left"></i>
+              <span>Sign Out</span>
+            </a>
+          </li>
+  
+        </ul><!-- End Profile Dropdown Items -->
+      </li><!-- End Profile Nav -->
+      <!-- End Search Icon-->
+  
+      <li class="nav-item dropdown">
+  
+        <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+          <i class="bi bi-bell"></i>
+          <span class="badge bg-primary badge-number">4</span>
+        </a><!-- End Notification Icon -->
+  
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+          <li class="dropdown-header">
+            You have 4 new notifications
+            <a routerLink="/detaitreclamation"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <div *ngFor="let r  of listrec ">
+          <li  class="notification-item">
+            <a routerLink="gestionUser/{{r.id}}">
+            <i class="bi bi-exclamation-circle text-danger"></i>
+            <div>
+              <h4>hrft</h4>
+              <p class="small fst-italic">{{r.text}}</p>
+              <p class="small fst-italic">{{r.createdAt}}</p>
+            </div>
+            </a>
+          </li>
+  
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+        </div>
+       
+  
+          <li class="dropdown-footer">
+            <a href="#">Show all notifications</a>
+          </li>
+  
+        </ul><!-- End Notification Dropdown Items -->
+  
+      </li><!-- End Notification Nav -->
+  
+      <li class="nav-item dropdown">
+  
+        <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+          <i class="bi bi-chat-left-text"></i>
+          <span class="badge bg-success badge-number">5</span>
+        </a><!-- End Messages Icon -->
+  
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+          <li class="dropdown-header">
+            You have 5 new messages
+            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+    <div  *ngFor="let r  of listrec ">
+          <li class="message-item">
+            <a routerLink="gestionUser/{{r.id}}">
+              <i class="bi bi-exclamation-circle text-danger"></i>
+              <div>
+                <div class="col-md-3 col-lg-12">
+                  <p class="small fst-italic">{{r.text}}</p>
+                 
+                <p class="small fst-italic ">{{r.createdAt}}</p>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+        </div>
+  
+          <li class="dropdown-footer">
+            <a href="#">Show all messages</a>
+          </li>
+  
+        </ul><!-- End Messages Dropdown Items -->
+  
+      </li><!-- End Messages Nav -->
+  
+  
+  
+    </ul>
+  
+  </div><!-- End Icons Navigation -->
+

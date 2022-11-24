@@ -33,7 +33,6 @@
 		play: 5000,
 		animation: 'fade',
 	});
-	console.log("ccc", $( ".cover-slides ul li" ))
 	
 	$( ".cover-slides ul li" ).append( "<div class='overlay-background'></div>" );
 	
@@ -88,10 +87,10 @@
 	/* ..............................................
     Datepicker
     ................................................. */
-	/* console.log($('.datepicker'));
+	
 	$('.datepicker').pickadate();
 	
-	$('.time').pickatime(); */
+	$('.time').pickatime();
 	
 	
 	

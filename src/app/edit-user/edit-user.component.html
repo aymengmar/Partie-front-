@@ -1,0 +1,181 @@
+<app-restaurant-header></app-restaurant-header>
+<div class="all-page-title page-breadcrumb">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Special Menu</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<main>
+    <div class="container">
+
+      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+              <div class="d-flex justify-content-center py-4">
+                <a href="index.html" class="logo d-flex align-items-center w-auto">
+                  <img src="assets/img/logo.png" alt="">
+                  <span class="d-none d-lg-block">NiceAdmin</span>
+                </a>
+              </div><!-- End Logo -->
+              <form name="form" #form="ngForm">
+                <div class="row mb-3">
+                  <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+                  <div class="col-md-8 col-lg-9">
+                    <img src="assets/images/DSC_9802 4id 4.jpg" alt="Profile">
+                    <div class="pt-2">
+                      <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
+                      <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                    </div>
+                  </div>
+                </div>
+            
+                <div class="row mb-3">
+                  <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Login</label>
+                  <div class="col-md-8 col-lg-9">
+                    <input type="text" name="Login" class="form-control" [(ngModel)]="user.Login" #Login="ngModel" required minlength="4" maxlength="13" >
+                    <div *ngIf="Login.touched && Login.invalid">
+                    
+                      <div *ngIf="Login.errors!['required']"> Entrer vortre Login!</div>
+                      <div *ngIf="Login.errors!['minlength']">Votre Login doit étre entre 5 et 12</div>
+                  
+                </div>                  
+              </div>
+                </div>
+            
+                <div class="row mb-3">
+                  <label for="about" class="col-md-4 col-lg-3 col-form-label">Nom</label>
+                  <div class="col-md-8 col-lg-9">
+                    <input name="nom" class="form-control" id="about" value={{user.nom}} [(ngModel)]="user.nom" #nom="ngModel" required>
+                    <div  *ngIf="nom.touched && nom.invalid">
+                        
+                      <div *ngIf="nom.errors!['required']"> Entrer vortre nom!</div>
+                   
+                    </div>
+                  </div>
+                </div>
+            
+                <div class="row mb-3">
+                  <label for="company" class="col-md-4 col-lg-3 col-form-label">Prénom</label>
+                  <div class="col-md-8 col-lg-9">
+                    <input type="text" name="username" class="form-control" [(ngModel)]="user.prenom" #username="ngModel" required>
+                    <div  *ngIf="username.touched && username.invalid">
+                    
+                      <div *ngIf="username.errors!['required']"> Entrer vortre Prénom!</div>
+                     
+                  
+                </div>                  </div>
+                </div>
+            
+            
+                <div class="row mb-3">
+                  <label for="Country" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                  <div class="col-md-8 col-lg-9">
+                    <div class="input-group has-validation">
+                      <span class="input-group-text" id="inputGroupPrepend">@</span>
+                    <input type="email" name="email"  class="form-control" [(ngModel)]="user.email" #email="ngModel" required >
+                  </div>
+                    <div  *ngIf="email.touched && email.invalid ">
+                      
+                      <div *ngIf="email.errors!['required']"> Entrer vortre Email!</div>
+                      
+                     
+                </div>                  
+              </div>
+                </div>
+                
+                <div class="row mb-3">
+                  <label for="Job" class="col-md-4 col-lg-3 col-form-label">Télephone</label>
+                  <div class="col-md-8 col-lg-9">
+                    <input type="text" name="telephone" class="form-control" [(ngModel)]="user.telephone" #telephone="ngModel" 
+                     required minlength="8" maxlength="8" pattern="[0-9]+">
+                    <div *ngIf="telephone.touched && telephone.invalid">
+                      <div *ngIf="telephone.errors!['required']"> Entrer vortre Num Télephon!</div>
+                      <div *ngIf="telephone.errors!['maxlength']">Entrer 8 chiffres</div>
+                      <div *ngIf="telephone.errors!['minlength']">Entrer 8 chiffres</div>
+                      <div *ngIf="telephone.errors!['pattern']">Vérifier votre Num Télephon!</div>
+          
+                      </div>                 
+                     </div>
+                </div>
+
+              
+            
+                <div class="row mb-3">
+                  <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
+                  <div class="col-md-8 col-lg-9">
+                    <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street, New York, NY 535022" required>
+                  </div>
+                </div>
+            
+            
+            
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary" (click)="edit()" [disabled]="form.invalid">Save Changes</button>
+                </div>
+              </form><!-- End Profile Edit Form -->
+            
+            </div>
+            
+            <div class="tab-pane fade pt-3" id="profile-settings">
+            
+              <!-- Settings Form -->
+              <form>
+            
+                <div class="row mb-3">
+                  <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Email Notifications</label>
+                  <div class="col-md-8 col-lg-9">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="changesMade" checked>
+                      <label class="form-check-label" for="changesMade">
+                        Changes made to your account
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="newProducts" checked>
+                      <label class="form-check-label" for="newProducts">
+                        Information on new products and services
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="proOffers">
+                      <label class="form-check-label" for="proOffers">
+                        Marketing and promo offers
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="securityNotify" checked disabled>
+                      <label class="form-check-label" for="securityNotify">
+                        Security alerts
+                      </label>
+                    </div>
+                  </div>
+                </div>
+            
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+              </form>
+            
+
+              <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </section>
+      <label  class="form-label"></label>
+    </div>
+  </main>
+
