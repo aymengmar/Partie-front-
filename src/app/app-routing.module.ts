@@ -16,7 +16,7 @@ import { GestionUserComponent } from './gestion-user/gestion-user.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
-  {path:'restaurant',component:RestaurantComponent},
+  {path:'restaurant/:id',component:RestaurantComponent},
   {path:'menu',component:MenuComponent},
   {path:'about',component:AboutComponent},
   {path:'Stuff',component:StuffComponent},
@@ -25,9 +25,10 @@ const routes: Routes = [
   {path:'Contact',component:ContactComponent},
   {path:'inscription',component:InscriptionComponent},
   {path:'pageadmin',component:AdminNavComponent},
-  {path:'editprofile',component:EditUserComponent}, /* a changer par /:login */
+  {path:'editprofile',component:EditUserComponent}, /* a changer par  */
   {path : 'login', component:AuthentificationComponent },
   {path:'gestionUser',component:GestionUserComponent},
+  {path:'login/:login',component:GestionUserComponent},
 
 
 

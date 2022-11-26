@@ -26,24 +26,24 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-12">
-					<form id="contactForm">
+					<form id="contactForm" nom="form"  #form="ngForm">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required data-error="Please enter your name">
+									<input type="text" class="form-control" id="name" name="name" [(ngModel)]="r.nameUser" #name="ngModel" placeholder="Your Name" required data-error="Please enter your name">
 									<div class="help-block with-errors"></div>
 								</div>                                 
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
-									<input type="text" placeholder="Your Email" id="email" class="form-control" name="name" required data-error="Please enter your email">
+									<input type="text" placeholder="Your Email" id="email" class="form-control" name="email" [(ngModel)]="r.emailUser" #email="ngModel" required data-error="Please enter your email">
 									<div class="help-block with-errors"></div>
 								</div> 
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
 									<select class="custom-select d-block form-control" id="guest" required data-error="Please Select Person">
-									  <option disabled selected>Please Select Person*</option>
+									  <option disabled selected name="personne" [(ngModel)]="r.personne" #personne="ngModel">Please Select Person*</option>
 									  <option value="1">1</option>
 									  <option value="2">2</option>
 									  <option value="3">3</option>
@@ -55,11 +55,11 @@
 							</div>
 							<div class="col-md-12">
 								<div class="form-group"> 
-									<textarea class="form-control" id="message" placeholder="Your Message" rows="4" data-error="Write your message" required></textarea>
+									<textarea class="form-control" id="message" placeholder="Your Message" rows="4" data-error="Write your message" required  name="text" [(ngModel)]="r.text" #text="ngModel"></textarea>
 									<div class="help-block with-errors"></div>
 								</div>
 								<div class="submit-button text-center">
-									<button class="btn btn-common" id="submit" type="submit">Send Message</button>
+									<button class="btn btn-common" id="submit" type="submit" (click)="add()">Send Message</button>
 									<div id="msgSubmit" class="h3 text-center hidden"></div> 
 									<div class="clearfix"></div> 
 								</div>

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Menus } from 'src/model/Menus';
+import { Restaurants } from 'src/model/Restaurants';
+import { MenuService } from '../service/menu.service';
+import { RestaurantService } from '../service/restaurant.service';
 
 @Component({
   selector: 'app-restaurant',
@@ -8,18 +12,41 @@ import { Router } from '@angular/router';
 })
 export class RestaurantComponent implements OnInit {
 
-  constructor(private route:Router) { }
-
+  constructor(private rou:Router,private route:ActivatedRoute, private restoSev :RestaurantService, private menuServise: MenuService) { }
+  id:number=0;
+  // comm c = new comm()
+  menu:Menus[]=[]
+ res:Restaurants=new Restaurants()
   ngOnInit(): void {
-    console.log("111")
+    this.id=this.route.snapshot.params['id']
+    console.log("Restaur id ",this.id)
     this.loadScripts()
+    
+    this.restoSev.getByid(this.id).subscribe(
+      
+      (data)=>this.res=data,
+      (error)=>console.log(error)
+    );
+
+    this.menuServise.getByResto(this.id).subscribe(
+      
+      (data)=>this.menu=data,
+      (error)=>console.log(error)
+    );
+
+
+
   }
    
-  commander(){
-   this.route.navigate(['/commander'])
+  comm(nomMenu:Sting,prix:int){
+   // c.nomMenu=nomMenu
+   //c.prixMenu=prix
+   
+   this.rou.navigate(['/commander'])
   }
 // Method to dynamically load JavaScript
 loadScripts() {
+  
   
   // This array contains all the files/CDNs
   const dynamicScripts = [

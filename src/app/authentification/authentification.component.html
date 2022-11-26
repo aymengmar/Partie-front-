@@ -37,14 +37,14 @@
                       <label for="yourUsername" class="form-label"></label>
                       <div class="input-group has-validation">
                        
-                        <input type="text" class="form-control" name="Login" [(ngModel)]="usertt.Login" required>
+                        <input type="text" class="form-control" name="Login" [(ngModel)]="usertt.Login" #Login="ngModel" required>
                         <div class="invalid-feedback">Please enter your login.</div>
                       </div>
                     </div>
 
                     <div class="col-12">
                       <label for="yourPassword" class="form-label"></label>
-                      <input type="password" name="password_" class="form-control" name="password_" [(ngModel)]="usertt.password_"  required>
+                      <input type="password" name="password_" class="form-control" name="password_" [(ngModel)]="usertt.password_" #password_="ngModel"  required>
                       <div class="invalid-feedback">Please enter your password!</div>
                     </div>
 

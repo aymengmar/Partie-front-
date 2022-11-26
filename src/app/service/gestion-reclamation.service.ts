@@ -27,4 +27,8 @@ count:number=0
     return this.http.delete(this.reclmUrl+"/remove/"+id)  
   }
 
+  add(data:Reclamations):Observable<Reclamations>{
+    return this.http.post<Reclamations>(this.reclmUrl+"/add",data);
+  }
+
 }
