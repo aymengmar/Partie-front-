@@ -1,9 +1,9 @@
 export class Menus{
     id!:number;
     name!:string;
-    price!:string;
+    price!:number;
     description!:string;
-    photo!:string;
+    image!:any;
     createdAt!:Date;
     updatedAt!:Date;
     RestaurantId!:number

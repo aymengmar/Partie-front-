@@ -24,6 +24,9 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { GestionUserComponent } from './gestion-user/gestion-user.component';
 import { DetailReclamationComponent } from './detail-reclamation/detail-reclamation.component';
+import { GestionRestoComponent } from './gestion-resto/gestion-resto.component';
+import { AjouterMenuComponent } from './ajouter-menu/ajouter-menu.component';
+import { AjouterRestoComponent } from './ajouter-resto/ajouter-resto.component';
 
 
 @NgModule({
@@ -50,6 +53,9 @@ import { DetailReclamationComponent } from './detail-reclamation/detail-reclamat
          AuthentificationComponent,
          GestionUserComponent,
          DetailReclamationComponent,
+         GestionRestoComponent,
+         AjouterMenuComponent,
+         AjouterRestoComponent,
     
     
   ],

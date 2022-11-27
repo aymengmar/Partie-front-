@@ -14,6 +14,7 @@ export class AuthentificationComponent implements OnInit {
 id :number=0;
   constructor(private UserSERVICE:GestionUserService ,private router:Router) { }
   usertt:Utilisateurs=new Utilisateurs();
+  
   ngOnInit(): void {
 
     

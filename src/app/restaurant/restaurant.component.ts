@@ -38,13 +38,19 @@ export class RestaurantComponent implements OnInit {
 
   }
    
-  comm(nomMenu:Sting,prix:int){
+  /* comm(nomMenu:Sting,prix:int){
    // c.nomMenu=nomMenu
    //c.prixMenu=prix
    
    this.rou.navigate(['/commander'])
-  }
+  } */
 // Method to dynamically load JavaScript
+
+
+
+
+
+
 loadScripts() {
   
   

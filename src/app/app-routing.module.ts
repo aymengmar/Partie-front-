@@ -13,6 +13,9 @@ import { AdminNavComponent } from './admin-nav/admin-nav.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { GestionUserComponent } from './gestion-user/gestion-user.component';
+import { GestionRestoComponent } from './gestion-resto/gestion-resto.component';
+import { AjouterMenuComponent } from './ajouter-menu/ajouter-menu.component';
+import { AjouterRestoComponent } from './ajouter-resto/ajouter-resto.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -25,10 +28,13 @@ const routes: Routes = [
   {path:'Contact',component:ContactComponent},
   {path:'inscription',component:InscriptionComponent},
   {path:'pageadmin',component:AdminNavComponent},
-  {path:'editprofile',component:EditUserComponent}, /* a changer par  */
+  {path:'editprofile',component:EditUserComponent},
   {path : 'login', component:AuthentificationComponent },
   {path:'gestionUser',component:GestionUserComponent},
   {path:'login/:login',component:GestionUserComponent},
+  {path:'gestionResto',component:GestionRestoComponent},
+  {path:'ajoumenu',component:AjouterMenuComponent},
+  {path:'ajouresto',component:AjouterRestoComponent},
 
 
 
