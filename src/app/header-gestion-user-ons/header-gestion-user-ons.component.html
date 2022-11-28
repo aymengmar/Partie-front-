@@ -1,18 +1,17 @@
 <div class="   header-nav ms-auto ">
     <ul class="d-flex align-items-center">
-      
     
       <li class="nav-item dropdown pe-3">
   
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-          <img src="assets/images/DSC_9802 4id 4.jpg" alt="Profile" class="rounded-circle">
-          <span class="d-none d-md-block dropdown-toggle ps-2">{{User.Login}}</span>
+          <img src="assets/images/ons Atig.jpg" alt="Profile" class="rounded-circle">
+          <span class="d-none d-md-block dropdown-toggle ps-2">login</span>
         </a><!-- End Profile Iamge Icon -->
-        
+       
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile header-nav ms-auto">
           <li class="dropdown-header">
-            <h6>  {{User.prenom}}  {{User.nom}} </h6>
-            <span>{{User.statut}}</span>
+            <h6>  ons Atig</h6>
+            <span>restaurant</span>
           </li>
           <li>
             <hr class="dropdown-divider">
@@ -29,7 +28,7 @@
           </li>
   
           <li>
-            <a class="dropdown-item d-flex align-items-center" routerLink="/editprofile/{{User.Login}}">
+            <a class="dropdown-item d-flex align-items-center" routerLink="/editprofile/login">
               <i class="bi bi-gear"></i>
               <span>Account Settings</span>
             </a>
@@ -74,14 +73,14 @@
           <li>
             <hr class="dropdown-divider">
           </li>
-          <div *ngFor="let r  of listrec ">
+          <div >
           <li  class="notification-item">
-            <a routerLink="gestionUser/{{r.id}}">
+            <a routerLink="gestionUser/id">
             <i class="bi bi-exclamation-circle text-danger"></i>
             <div>
               <h4>hrft</h4>
-              <p class="small fst-italic">{{r.text}}</p>
-              <p class="small fst-italic">{{r.createdAt}}</p>
+              <p class="small fst-italic">text</p>
+              <p class="small fst-italic">cratAT</p>
             </div>
             </a>
           </li>
@@ -115,15 +114,15 @@
           <li>
             <hr class="dropdown-divider">
           </li>
-    <div  *ngFor="let r  of listrec ">
+    <div  >
           <li class="message-item">
-            <a routerLink="gestionUser/{{r.id}}">
+            <a routerLink="gestionUser/id">
               <i class="bi bi-exclamation-circle text-danger"></i>
               <div>
                 <div class="col-md-3 col-lg-12">
-                  <p class="small fst-italic">{{r.text}}</p>
+                  <p class="small fst-italic">text</p>
                  
-                <p class="small fst-italic ">{{r.createdAt}}</p>
+                <p class="small fst-italic ">crated at </p>
                 </div>
               </div>
             </a>
@@ -146,4 +145,5 @@
     </ul>
   
   </div><!-- End Icons Navigation -->
+
 

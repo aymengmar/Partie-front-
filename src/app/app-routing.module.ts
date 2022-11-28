@@ -16,10 +16,14 @@ import { GestionUserComponent } from './gestion-user/gestion-user.component';
 import { GestionRestoComponent } from './gestion-resto/gestion-resto.component';
 import { AjouterMenuComponent } from './ajouter-menu/ajouter-menu.component';
 import { AjouterRestoComponent } from './ajouter-resto/ajouter-resto.component';
+import { CommandeIthemComponent } from './commande-ithem/commande-ithem.component';
+import { ModifierMenuComponent } from './modifier-menu/modifier-menu.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
   {path:'restaurant/:id',component:RestaurantComponent},
+  {path:'modifierMenu/:id',component:ModifierMenuComponent},
+  {path:'restaurant',component:RestaurantComponent},
   {path:'menu',component:MenuComponent},
   {path:'about',component:AboutComponent},
   {path:'Stuff',component:StuffComponent},
@@ -33,8 +37,9 @@ const routes: Routes = [
   {path:'gestionUser',component:GestionUserComponent},
   {path:'login/:login',component:GestionUserComponent},
   {path:'gestionResto',component:GestionRestoComponent},
-  {path:'ajoumenu',component:AjouterMenuComponent},
+  {path:'ajoumenu/:id',component:AjouterMenuComponent},
   {path:'ajouresto',component:AjouterRestoComponent},
+  {path:'commandeithem',component:CommandeIthemComponent},
 
 
 

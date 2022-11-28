@@ -13,7 +13,7 @@ import { GestionUserService } from '../service/gestion-user.service';
 })
 export class NavAdminComponent implements OnInit {
   cont :string=''
-  Login:string='nadacheb'
+  Login:string='nadaelif'
   User:Utilisateurs=new Utilisateurs();
   Rec:Reclamations=new Reclamations();
   listrec: Reclamations[] = [];
@@ -27,6 +27,10 @@ export class NavAdminComponent implements OnInit {
       (data)=>this.cont=data,
       (error)=>console.log(error)
     );
+    this.route.queryParams.subscribe(
+
+      (p)=>console.log(p),
+    )
     console.log(this.cont);
     this.recService.getAll().subscribe(
       

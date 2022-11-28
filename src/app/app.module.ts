@@ -27,6 +27,11 @@ import { DetailReclamationComponent } from './detail-reclamation/detail-reclamat
 import { GestionRestoComponent } from './gestion-resto/gestion-resto.component';
 import { AjouterMenuComponent } from './ajouter-menu/ajouter-menu.component';
 import { AjouterRestoComponent } from './ajouter-resto/ajouter-resto.component';
+import { HeaderGestionUserComponent } from './header-gestion-user/header-gestion-user.component';
+import { HeaderGestionUserOnsComponent } from './header-gestion-user-ons/header-gestion-user-ons.component';
+import { HeaderGestionUserAdminComponent } from './header-gestion-user-admin/header-gestion-user-admin.component';
+import { CommandeIthemComponent } from './commande-ithem/commande-ithem.component';
+import { ModifierMenuComponent } from './modifier-menu/modifier-menu.component';
 
 
 @NgModule({
@@ -56,6 +61,11 @@ import { AjouterRestoComponent } from './ajouter-resto/ajouter-resto.component';
          GestionRestoComponent,
          AjouterMenuComponent,
          AjouterRestoComponent,
+         HeaderGestionUserComponent,
+         HeaderGestionUserOnsComponent,
+         HeaderGestionUserAdminComponent,
+         CommandeIthemComponent,
+         ModifierMenuComponent,
     
     
   ],
