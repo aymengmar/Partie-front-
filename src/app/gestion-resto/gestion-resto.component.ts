@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Menus } from 'src/model/Menus';
 import { GestionUserService } from '../service/gestion-user.service';
 import { MenuService } from '../service/menu.service';
@@ -10,9 +11,13 @@ import { MenuService } from '../service/menu.service';
 })
 export class GestionRestoComponent implements OnInit {
   listMenu: Menus[] = []
-  constructor(private menuService:MenuService) { }
+  constructor(private menuService:MenuService,
+              private userService:GestionUserService,
+              private router:Router
+              ) { }
 
   ngOnInit(): void {
+    this.checkAccess()
     this.menuService.getByResto(1).subscribe(
       
       (data)=>this.listMenu=data,
@@ -30,6 +35,19 @@ export class GestionRestoComponent implements OnInit {
 
   }}
 
+  checkAccess()
+  {
+    if(this.userService.getRole()!='restorateur')
+    {
+        this.router.navigate(['login'])
+    }
+  }
 
+  ajoutermenu(){
+    this.router.navigate(['/ajoumenu/1'])
+  }
+  ajouteresto(){
+    this.router.navigate(['ajouresto'])
+  }
 
 }

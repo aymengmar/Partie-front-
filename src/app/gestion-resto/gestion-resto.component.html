@@ -34,6 +34,8 @@
             <th>Prix</th>
             <th>Déscription</th>
             <th>image</th>
+            
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -65,9 +67,14 @@
             </td>
           
             <td>
-              <button type="button" class="btn btn-link btn-sm btn-rounded" >
-                <a routerLink="/modifierMenu/{{u.id}}">Ajouter menu</a>
+              <!-- <button type="button" class="btn btn-link btn-sm btn-rounded" > -->
+                <!-- <a routerLink="/ajoumenu/1">Ajouter menu</a> -->
+               <!--  <a routerLink="/ajouresto">Ajouter resto</a>
               </button>
+              <button type="button" class="btn btn-link btn-sm btn-rounded" >
+                <a routerLink="/ajoumenu/1">Ajouter menu</a>
+                
+              </button> -->
               <button type="button" class="btn btn-link btn-sm btn-rounded" (click)="supprimer(u.id)">
                Supprimer
                </button>
@@ -77,10 +84,17 @@
         
         </tbody>
       </table>
-
-      <a routerLink="/ajoumenu/1">Ajouter menu</a>
-      <br>
-      <a routerLink="/ajouresto">Ajouter resto</a>
+      <div class="col text-center">
+        <button type="button" class="btn btn-outline-warning " (click)="ajoutermenu()">
+          Ajouter Menu
+          </button>
+          <button type="button" class="btn btn-outline-warning" (click)="ajouteresto()">
+            Ajouter Resto
+            </button>
+        
+      </div>
+      
+     
 
  
 

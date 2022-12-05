@@ -18,7 +18,10 @@ constructor(private route:ActivatedRoute,private recServise: GestionReclamationS
   add(){
     if (window.confirm("Do you want to send ?")) {
     this.recServise.add(this.r).subscribe((data)=>console.log(data))
-    this.router.navigateByUrl('/login')
+    this.router.navigate(
+      ['/login'],
+      { queryParams: { order: 'popular'} }
+    );
   }
   
   }

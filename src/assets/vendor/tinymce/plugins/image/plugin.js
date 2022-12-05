@@ -821,8 +821,8 @@
       const out = [];
       global.each(list, item => {
         const text = getText(item);
-        if (item.menu !== undefined) {
-          const items = sanitizeList(item.menu, extractValue);
+        if (item.Menu !== undefined) {
+          const items = sanitizeList(item.Menu, extractValue);
           out.push({
             text,
             items

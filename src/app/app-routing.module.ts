@@ -18,28 +18,33 @@ import { AjouterMenuComponent } from './ajouter-menu/ajouter-menu.component';
 import { AjouterRestoComponent } from './ajouter-resto/ajouter-resto.component';
 import { CommandeIthemComponent } from './commande-ithem/commande-ithem.component';
 import { ModifierMenuComponent } from './modifier-menu/modifier-menu.component';
+import { AuthGuard } from './guard/auth.guard';
+import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
   {path:'restaurant/:id',component:RestaurantComponent},
-  {path:'modifierMenu/:id',component:ModifierMenuComponent},
-  {path:'restaurant',component:RestaurantComponent},
+  {path:'modifierMenu/:id',component:ModifierMenuComponent },
+  {path:'restaurant',component:RestaurantComponent /* ,canActivate : [AuthGuard] */},
   {path:'menu',component:MenuComponent},
   {path:'about',component:AboutComponent},
-  {path:'Stuff',component:StuffComponent},
-  {path:'Gallery',component:GalleryComponent},
+  {path:'Stuff',component:StuffComponent },
+  {path:'Gallery',component:GalleryComponent },
   {path:'commander',component:CommendeComponent},
   {path:'Contact',component:ContactComponent},
   {path:'inscription',component:InscriptionComponent},
   {path:'pageadmin',component:AdminNavComponent},
   {path:'editprofile',component:EditUserComponent},
   {path : 'login', component:AuthentificationComponent },
-  {path:'gestionUser',component:GestionUserComponent},
+  {path:'gestionUser',component:GestionUserComponent },
   {path:'login/:login',component:GestionUserComponent},
-  {path:'gestionResto',component:GestionRestoComponent},
+  {path:'gestionResto',component:GestionRestoComponent,canActivate : [AuthGuard]},
   {path:'ajoumenu/:id',component:AjouterMenuComponent},
   {path:'ajouresto',component:AjouterRestoComponent},
-  {path:'commandeithem',component:CommandeIthemComponent},
+  {path:'commandeithem/:id',component:CommandeIthemComponent},
+  {path:'commande',component:CommendeComponent},
+  {path:'test',component:TestComponent},
+
 
 
 

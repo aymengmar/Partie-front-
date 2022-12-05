@@ -1,10 +1,10 @@
- <app-restaurant-header></app-restaurant-header>
+<app-restaurant-header></app-restaurant-header>
 <br>
 <br>
 <br>
 <br>
 <br>
-<ng-container *ngIf="true" >
+<ng-container *ngIf="orders.length !=0" >
     <div class="container">
    
        <div class="card-table">
@@ -23,27 +23,30 @@
                      </tr>
                   </thead>
                   <tbody>
-                      <tr>
-                       <td>1</td>
-                       <td>title</td>
-                       <td><img style="width: 120px;" src="image" alt=""></td>
-                       <td style="width: 25%;">description</td>
-                       <td style="width: 25%;">price</td>
-                       <td style="width: 25%;">quantity</td>
-                       <td style="width: 25%;">total</td>
+                      <tr *ngFor="let item of orders; let i = index">
+                        <td>{{i+1}}</td>
+                    <td>{{item.name}}</td>
+                    <td><img style="width: 120px;" src="" alt=""></td>
+                    <td style="width: 25%;">{{item.description}}</td>
+                    <td style="width: 25%;">{{item.price}}</td>
+                    <td style="width: 25%;">
+                        <i class="fa fa-plus" (click)="incrementQuantity(i)" style="margin-right:15px ;" aria-hidden="true"></i>
+                        <i class="fa fa-minus" (click)="decrementQuantity(i)" aria-hidden="true"></i>
+
+                    </td>
+                    <td style="width: 25%;">{{item.total}}</td>
                        <td>
-                           <button class="btn btn-danger" ><i class="fas fa-trash-alt"></i> Delete</button>
-                       </td> -->
-                       <td>
-                           <button class="btn btn-danger"> Delete</button>
+                           <button class="btn btn-danger"  (click)="removeItem(item)"><i class="fas fa-trash-alt"></i> Delete</button>
                        </td> 
+                       
                       </tr>
                       <tr>
                        <td colspan="4"></td>
-                       <td><button  class="btn btn-danger">Empty Cart</button></td>
-                       <td><button  class="btn btn-primary">Shop More</button></td>
-                       <td><button class="btn btn-success">Checkout</button></td>
-                       <td><strong>Grand Total : </strong></td>
+                       <td><button  class="btn btn-danger"(click)="emptycart()">Empty Cart</button></td>
+                       <td><button  class="btn btn-primary"routerLink="/restaurant/{{res.id}}">Shop More</button></td>
+                       <td><button class="btn btn-success" (click)="ajouter()">Checkout</button></td>
+                       <td><strong>Grand Total : {{grandTotal}} </strong></td>
+                       
                    </tr>
                   </tbody>
        
@@ -58,7 +61,7 @@
    
    
    
-   <ng-container *ngIf="false">
+   <ng-container *ngIf="orders.length ==0">
        <div class="container">
            <div class="card">
                <h5 class="cart-title" >My Cart</h5>
@@ -67,10 +70,317 @@
                <img src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90" alt="">
                <h4>Your cart is empty!</h4>
                <h6>Add ihem to it now</h6>
-               <button  class="btn btn-primary">Shop Now</button>
+               <button  class="btn btn-primary"routerLink="/restaurant/{{res.id}}">Shop Now</button>
            </div>
        </div>
    </ng-container>
    
-   <app-contact-imfo></app-contact-imfo>
-   <app-footer></app-footer> 
+    
+
+
+<!-- <script src="https://cdn01.jotfor.ms/static/prototype.forms.js?3.3.37780" type="text/javascript"></script>
+<script src="https://cdn02.jotfor.ms/static/jotform.forms.js?3.3.37780" type="text/javascript"></script>
+<script src="https://cdn03.jotfor.ms/js/payments/PaymentListSettings/searchInProducts.js?v=3.3.37780" type="text/javascript"></script>
+<script src="https://cdn01.jotfor.ms/js/payments/PaymentListSettings/sortingProducts.js?v=3.3.37780" type="text/javascript"></script>
+<script src="https://cdn02.jotfor.ms/js/payments/paypalcomplete.js?v=3.3.37780" type="text/javascript"></script>
+<script src="https://cdn03.jotfor.ms/js/payments/paymentUtils.js?v=3.3.37780" type="text/javascript"></script>
+<script src="https://cdn01.jotfor.ms/js/libraries/promise-polyfill.js"></script>
+<script src="https://cdn02.jotfor.ms/js/payments/payment_form_embedded.js?v=3.3.37780" type="text/javascript"></script>
+<script type="text/javascript">	JotForm.newDefaultTheme = true;
+	JotForm.extendsNewTheme = false;
+	JotForm.singleProduct = false;
+	JotForm.newPaymentUIForNewCreatedForms = true;
+	JotForm.newPaymentUI = true;
+
+   JotForm.setConditions([{"action":[{"id":"action_0_1594143321636","visibility":"Show","isError":false,"field":"14"}],"id":"1594143304509","index":"0","link":"Any","priority":"0","terms":[{"id":"term_0_1594143321636","field":"13","operator":"equals","value":"Yes.","isError":false}],"type":"field"},{"action":[{"id":"action_0_1594143320310","visibility":"Show","isError":false,"field":"12"}],"id":"1594143320309","index":"1","link":"Any","priority":"1","terms":[{"id":"term_0_1594143320310","field":"13","operator":"equals","value":"No, I request for a delivery.","isError":false}],"type":"field"}]);	JotForm.clearFieldOnHide="disable";
+	JotForm.submitError="jumpToFirstError";
+
+	JotForm.init(function(){
+	/*INIT-START*/
+      productID = {"0":"input_22_1004","1":"input_22_1005","2":"input_22_1006","3":"input_22_1007","4":"input_22_1008","5":"input_22_1009","6":"input_22_1010","7":"input_22_1011","8":"input_22_1013","9":"input_22_1014","10":"input_22_1015","11":"input_22_1017","12":"input_22_1018","13":"input_22_1019","14":"input_22_1021","15":"input_22_1022","16":"input_22_1023"};
+      paymentType = "product";
+      JotForm.setCurrencyFormat('USD',true, 'point');
+      JotForm.totalCounter({"input_22_1004":{"price":"4","quantityField":"input_22_quantity_1004_0"},"input_22_1005":{"price":"4","quantityField":"input_22_quantity_1005_0"},"input_22_1006":{"price":"7","quantityField":"input_22_quantity_1006_0"},"input_22_1007":{"price":"8","quantityField":"input_22_quantity_1007_0"},"input_22_1008":{"price":"9","quantityField":"input_22_quantity_1008_0"},"input_22_1009":{"price":"9","quantityField":"input_22_quantity_1009_0"},"input_22_1010":{"price":"9","quantityField":"input_22_quantity_1010_0"},"input_22_1011":{"price":"7","quantityField":"input_22_quantity_1011_0"},"input_22_1013":{"price":"10","quantityField":"input_22_quantity_1013_0"},"input_22_1014":{"price":"11","quantityField":"input_22_quantity_1014_0"},"input_22_1015":{"price":"12","quantityField":"input_22_quantity_1015_0"},"input_22_1017":{"price":"14","quantityField":"input_22_quantity_1017_0"},"input_22_1018":{"price":"12","quantityField":"input_22_quantity_1018_0"},"input_22_1019":{"price":"18","quantityField":"input_22_quantity_1019_0"},"input_22_1021":{"price":"3","quantityField":"input_22_quantity_1021_0"},"input_22_1022":{"price":"3","quantityField":"input_22_quantity_1022_0"},"input_22_1023":{"price":"3","quantityField":"input_22_quantity_1023_0"}});
+      $$('.form-product-custom_quantity').each(function(el, i){el.observe('blur', function(){isNaN(this.value) || this.value < 1 ? this.value = '0' : this.value = parseInt(this.value)})});
+      $$('.form-product-custom_quantity').each(function(el, i){el.observe('focus', function(){this.value == 0 ? this.value = '' : this.value})});
+JotForm.paymentCategoryHandler(true, true, {}, {});
+      JotForm.handleProductLightbox();
+      JotForm.paymentProperties = {"styleColor":"gold","styleShape":"rect","styleSize":"medium","styleLabel":"checkout","styleLayout":"vertical","payLaterEnabled":"No","paymentFormProperties":{"products":[{"cid":"2002","connectedCategories":"[\"2002\"]","connectedProducts":"[]","corder":"0","customPrice":"","customPriceSource":"0","description":"A bowl of our house special creamy mushroom soup","fitImageToCanvas":"Yes","hasExpandedOption":"","hasQuantity":"1","hasSpecialPricing":"","icon":"","images":"[\"https:\u002F\u002Fwww.jotform.com\u002Fuploads\u002FBellatrixL\u002Fform_files\u002FScreen Shot 2020-07-07 at 20.43.34.png?nc=1\"]","name":"Cream of Wild Mushroom","options":[{"type":"quantity","properties":"1\n2\n3\n4\n5\n6\n7\n8\n9\n10","name":"Quantity","defaultQuantity":"","specialPricing":false,"specialPrices":"","expanded":false}],"period":"Monthly","pid":"1004","price":"4","recurringtimes":"No Limit","required":"","selected":"","setupfee":"","showSubtotal":"0","trial":""},{"cid":"2002","connectedCategories":"[\"2002\"]","connectedProducts":"[]","corder":"1","customPrice":"","customPriceSource":"0","description":"A bowl of our classic chicken noodle made from grandma's recipe","fitImageToCanvas":"Yes","hasExpandedOption":"","hasQuantity":"1","hasSpecialPricing":"","icon":"","images":"[\"https:\u002F\u002Fwww.jotform.com\u002Fuploads\u002FBellatrixL\u002Fform_files\u002FScreen Shot 2020-07-07 at 20.45.47.png?nc=1\"]","name":"Tasty Chicken Noodle soup","options":[{"type":"quantity","properties":"1\n2\n3\n4\n5\n6\n7\n8\n9\n10","name":"Quantity","defaultQuantity":"","specialPricing":false,"specialPrices":"","expanded":false}],"period":"Monthly","pid":"1005","price":"4","recurringtimes":"No Limit","required":"","selected":"","setupfee":"","showSubtotal":"0","trial":""},{"cid":"2003","connectedCategories":"[\"2003\"]","connectedProducts":"[]","corder":"0","customPrice":"","customPriceSource":"0","description":"Classic caesar served with our house made garlic croutons","fitImageToCanvas":"Yes","hasExpandedOption":"","hasQuantity":"1","hasSpecialPricing":"","icon":"","images":"[\"https:\u002F\u002Fwww.jotform.com\u002Fuploads\u002FBellatrixL\u002Fform_files\u002FScreen Shot 2020-07-07 at 20.47.28.png?nc=1\"]","name":"Classic Caesar Salad","options":[{"type":"quantity","properties":"1\n2\n3\n4\n5\n6\n7\n8\n9\n10","name":"Quantity","defaultQuantity":"","specialPricing":false,"specialPrices":"","expanded":false}],"period":"Monthly","pid":"1006","price":"7","recurringtimes":"No Limit","required":"","selected":"","setupfee":"","showSubtotal":"0","trial":""},{"cid":"2003","connectedCategories":"[\"2003\"]","connectedProducts":"[]","corder":"1","customPrice":"","customPriceSource":"0","description":"A mixed green salad toped with spiced pecans, blue cheese, and cranberries served with a balsamic vinaigrette","fitImageToCanvas":"Yes","hasExpandedOption":"","hasQuantity":"1","hasSpecialPricing":"","icon":"","images":"[\"https:\u002F\u002Fwww.jotform.com\u002Fuploads\u002FBellatrixL\u002Fform_files\u002FScreen Shot 2020-07-07 at 20.57.11.png?nc=1\"]","name":"Cranberry Pecan Blue","options":[{"type":"quantity","properties":"1\n2\n3\n4\n5\n6\n7\n8\n9\n10","name":"Quantity","defaultQuantity":"","specialPricing":false,"specialPrices":"","expanded":false}],"period":"Monthly","pid":"1007","price":"8","recurringtimes":"No Limit","required":"","selected":"","setupfee":"","showSubtotal":"0","trial":""},{"cid":"2003","connectedCategories":"[\"2003\"]","connectedProducts":"[]","corder":"2","customPrice":"","customPriceSource":"0","description":"Served with crumbled bacon and an orange vinaigrette","fitImageToCanvas":"Yes","hasExpandedOption":"","hasQuantity":"1","hasSpecialPricing":"","icon":"","images":"[\"https:\u002F\u002Fwww.jotform.com\u002Fuploads\u002FBellatrixL\u002Fform_files\u002FScreen Shot 2020-07-07 at 21.02.49.png?nc=1\"]","name":"Spinach Salad","options":[{"type":"quantity","properties":"1\n2\n3\n4\n5\n6\n7\n8\n9\n10","name":"Quantity","defaultQuantity":"","specialPricing":false,"specialPrices":"","expanded":false}],"period":"Monthly","pid":"1008","price":"9","recurringtimes":"No Limit","required":"","selected":"","setupfee":"","showSubtotal":"0","trial":""},{"cid":"2004","connectedCategories":"[\"2004\"]","connectedProducts":"[]","corder":"0","customPrice":"","customPriceSource":"0","description":"With bacon, cheddar, avocado, lettuce, and tomato. Served with chips","fitImageToCanvas":"Yes","hasExpandedOption":"","hasQuantity":"1","hasSpecialPricing":"","icon":"","images":"[\"https:\u002F\u002Fwww.jotform.com\u002Fuploads\u002FBellatrixL\u002Fform_files\u002FScreen Shot 2020-07-07 at 21.03.40.png?nc=1\"]","name":"House Roasted Turkey Club","options":[{"type":"quantity","properties":"1\n2\n3\n4\n5\n6\n7\n8\n9\n10","name":"Quantity","defaultQuantity":"","specialPricing":false,"specialPrices":"","expanded":false}],"period":"Monthly","pid":"1009","price":"9","recurringtimes":"No Limit","required":"","selected":"","setupfee":"","showSubtotal":"0","trial":""},{"cid":"2004","connectedCategories":"[\"2004\"]","connectedProducts":"[]","corder":"0","customPrice":"","customPriceSource":"0","description":"Salami, ham, and provolone, oven toasted in a grinder roll and served with chips","fitImageToCanvas":"Yes","hasExpandedOption":"","hasQuantity":"1","hasSpecialPricing":"","icon":"","images":"[\"https:\u002F\u002Fwww.jotform.com\u002Fuploads\u002FBellatrixL\u002Fform_files\u002FScreen Shot 2020-07-07 at 21.10.24.png?nc=1\"]","name":"Hot Italian Grinder","options":[{"type":"quantity","properties":"1\n2\n3\n4\n5\n6\n7\n8\n9\n10","name":"Quantity","defaultQuantity":"","specialPricing":false,"specialPrices":"","expanded":false}],"period":"Monthly","pid":"1010","price":"9","recurringtimes":"No Limit","required":"","selected":"","setupfee":"","showSubtotal":"0","trial":""},{"cid":"2004","connectedCategories":"[\"2004\"]","connectedProducts":"[]","corder":"1","customPrice":"","customPriceSource":"0","description":"Classic BLT plus our twist of fresh avocado on toasted wheat bread.Served with chips","fitImageToCanvas":"Yes","hasExpandedOption":"","hasQuantity":"1","hasSpecialPricing":"","icon":"","images":"[\"https:\u002F\u002Fwww.jotform.com\u002Fuploads\u002FBellatrixL\u002Fform_files\u002FScreen Shot 2020-07-07 at 21.10.41.png?nc=1\"]","name":"The BLT+AA","options":[{"type":"quantity","properties":"1\n2\n3\n4\n5\n6\n7\n8\n9\n10","name":"Quantity","defaultQuantity":"","specialPricing":false,"specialPrices":"","expanded":false}],"period":"Monthly","pid":"1011","price":"7","recurringtimes":"No Limit","required":"","selected":"","setupfee":"","showSubtotal":"0","trial":""},{"cid":"2005","connectedCategories":"[\"2005\"]","connectedProducts":"[]","corder":"0","customPrice":"","customPriceSource":"0","description":"A half pound of flame broiled angus beef served with french fries","fitImageToCanvas":"Yes","hasExpandedOption":"","hasQuantity":"1","hasSpecialPricing":"","icon":"","images":"[\"https:\u002F\u002Fwww.jotform.com\u002Fuploads\u002FBellatrixL\u002Fform_files\u002FScreen Shot 2020-07-07 at 21.13.19.png?nc=1\"]","name":"Classic Hamburger","options":[{"type":"quantity","properties":"1\n2\n3\n4\n5\n6\n7\n8\n9\n10","name":"Quantity","defaultQuantity":"","specialPricing":false,"specialPrices":"","expanded":false}],"period":"Monthly","pid":"1013","price":"10","recurringtimes":"No Limit","required":"","selected":"","setupfee":"","showSubtotal":"0","trial":""},{"cid":"2005","connectedCategories":"[\"2005\"]","connectedProducts":"[]","corder":"0","customPrice":"","customPriceSource":"0","description":"A half pound of flame broiled angus beef topped with Cheddar and served with french fries","fitImageToCanvas":"Yes","hasExpandedOption":"","hasQuantity":"1","hasSpecialPricing":"","icon":"","images":"[\"https:\u002F\u002Fwww.jotform.com\u002Fuploads\u002FBellatrixL\u002Fform_files\u002FScreen Shot 2020-07-07 at 21.14.19.png?nc=1\"]","name":"Classic Cheeseburger","options":[{"type":"quantity","properties":"1\n2\n3\n4\n5\n6\n7\n8\n9\n10","name":"Quantity","defaultQuantity":"","specialPricing":false,"specialPrices":"","expanded":false}],"period":"Monthly","pid":"1014","price":"11","recurringtimes":"No Limit","required":"","selected":"","setupfee":"","showSubtotal":"0","trial":""},{"cid":"2005","connectedCategories":"[\"2005\"]","connectedProducts":"[]","corder":"1","customPrice":"","customPriceSource":"0","description":"A half pound of flame broiled angus beef, toped with cheddar, bacon, and mushrooms. Served with french fries","fitImageToCanvas":"Yes","hasExpandedOption":"","hasQuantity":"1","hasSpecialPricing":"","icon":"","images":"[\"https:\u002F\u002Fwww.jotform.com\u002Fuploads\u002FBellatrixL\u002Fform_files\u002FScreen Shot 2020-07-07 at 21.15.21.png?nc=1\"]","name":"The \"Works\" Burger","options":[{"type":"quantity","properties":"1\n2\n3\n4\n5\n6\n7\n8\n9\n10","name":"Quantity","defaultQuantity":"","specialPricing":false,"specialPrices":"","expanded":false}],"period":"Monthly","pid":"1015","price":"12","recurringtimes":"No Limit","required":"","selected":"","setupfee":"","showSubtotal":"0","trial":""},{"cid":"2006","connectedCategories":"[\"2006\"]","connectedProducts":"[]","corder":"0","customPrice":"","customPriceSource":"0","description":"Deep fried halibut and thick cut french fries served with tartar sauce","fitImageToCanvas":"Yes","hasExpandedOption":"","hasQuantity":"1","hasSpecialPricing":"","icon":"","images":"[\"https:\u002F\u002Fwww.jotform.com\u002Fuploads\u002FBellatrixL\u002Fform_files\u002FScreen Shot 2020-07-07 at 21.17.22.png?nc=1\"]","name":"Beer Battered Fish and Chips","options":[{"type":"quantity","properties":"1\n2\n3\n4\n5\n6\n7\n8\n9\n10","name":"Quantity","defaultQuantity":"","specialPricing":false,"specialPrices":"","expanded":false}],"period":"Monthly","pid":"1017","price":"14","recurringtimes":"No Limit","required":"","selected":"","setupfee":"","showSubtotal":"0","trial":""},{"cid":"2006","connectedCategories":"[\"2006\"]","connectedProducts":"[]","corder":"0","customPrice":"","customPriceSource":"0","description":"Topped with our homemade Memphis style BBQ sauce and served with french fries","fitImageToCanvas":"Yes","hasExpandedOption":"","hasQuantity":"1","hasSpecialPricing":"","icon":"","images":"[\"https:\u002F\u002Fwww.jotform.com\u002Fuploads\u002FBellatrixL\u002Fform_files\u002FScreen Shot 2020-07-07 at 21.17.22.png?nc=1\"]","name":"Barbecued Short Rib","options":[{"type":"quantity","properties":"1\n2\n3\n4\n5\n6\n7\n8\n9\n10","name":"Quantity","defaultQuantity":"","specialPricing":false,"specialPrices":"","expanded":false}],"period":"Monthly","pid":"1018","price":"12","recurringtimes":"No Limit","required":"","selected":"","setupfee":"","showSubtotal":"0","trial":""},{"cid":"2006","connectedCategories":"[\"2006\"]","connectedProducts":"[]","corder":"1","customPrice":"","customPriceSource":"0","description":"Pan fried and served with wild rice and haricots verts","fitImageToCanvas":"Yes","hasExpandedOption":"","hasQuantity":"1","hasSpecialPricing":"","icon":"","images":"[\"https:\u002F\u002Fwww.jotform.com\u002Fuploads\u002FBellatrixL\u002Fform_files\u002FScreen Shot 2020-07-07 at 21.17.22.png?nc=1\"]","name":"Herb Crusted Atlantic Salmon","options":[{"type":"quantity","properties":"1\n2\n3\n4\n5\n6\n7\n8\n9\n10","name":"Quantity","defaultQuantity":"","specialPricing":false,"specialPrices":"","expanded":false}],"period":"Monthly","pid":"1019","price":"18","recurringtimes":"No Limit","required":"","selected":"","setupfee":"","showSubtotal":"0","trial":""},{"cid":"2007","connectedCategories":"[\"2007\"]","connectedProducts":"[]","corder":"0","customPrice":"","customPriceSource":"0","description":"Deep fried golden and delicious","fitImageToCanvas":"Yes","hasExpandedOption":"","hasQuantity":"1","hasSpecialPricing":"","icon":"","images":"[\"https:\u002F\u002Fwww.jotform.com\u002Fuploads\u002FBellatrixL\u002Fform_files\u002FScreen Shot 2020-07-07 at 21.19.57.png?nc=1\"]","name":"French Fries","options":[{"type":"quantity","properties":"1\n2\n3\n4\n5\n6\n7\n8\n9\n10","name":"Quantity","defaultQuantity":"","specialPricing":false,"specialPrices":"","expanded":false}],"period":"Monthly","pid":"1021","price":"3","recurringtimes":"No Limit","required":"","selected":"","setupfee":"","showSubtotal":"0","trial":""},{"cid":"2007","connectedCategories":"[\"2007\"]","connectedProducts":"[]","corder":"0","customPrice":"","customPriceSource":"0","description":"Three grilled ears of sweet local corn","fitImageToCanvas":"Yes","hasExpandedOption":"","hasQuantity":"1","hasSpecialPricing":"","icon":"","images":"[\"https:\u002F\u002Fwww.jotform.com\u002Fuploads\u002FBellatrixL\u002Fform_files\u002FScreen Shot 2020-07-07 at 21.23.26.png?nc=1\"]","name":"Corn on the Cobb","options":[{"type":"quantity","properties":"1\n2\n3\n4\n5\n6\n7\n8\n9\n10","name":"Quantity","defaultQuantity":"","specialPricing":false,"specialPrices":"","expanded":false}],"period":"Monthly","pid":"1022","price":"3","recurringtimes":"No Limit","required":"","selected":"","setupfee":"","showSubtotal":"0","trial":""},{"cid":"2007","connectedCategories":"[\"2007\"]","connectedProducts":"[]","corder":"1","customPrice":"","customPriceSource":"0","description":"Made with our secret house recipe","fitImageToCanvas":"Yes","hasExpandedOption":"","hasQuantity":"1","hasSpecialPricing":"","icon":"","images":"[\"https:\u002F\u002Fwww.jotform.com\u002Fuploads\u002FBellatrixL\u002Fform_files\u002FScreen Shot 2020-07-07 at 21.24.15.png?nc=1\"]","name":"Baked Beans","options":[{"type":"quantity","properties":"1\n2\n3\n4\n5\n6\n7\n8\n9\n10","name":"Quantity","defaultQuantity":"","specialPricing":false,"specialPrices":"","expanded":false}],"period":"Monthly","pid":"1023","price":"3","recurringtimes":"No Limit","required":"","selected":"","setupfee":"","showSubtotal":"0","trial":""}]}}
+      JotForm.alterTexts(undefined);
+      JotForm.alterTexts({"couponApply":"Apply","couponBlank":"Please enter a coupon.","couponChange":"","couponEnter":"Enter coupon","couponExpired":"Coupon is expired. Please try another one.","couponInvalid":"Coupon is invalid.","couponValid":"Coupon is valid.","shippingShipping":"Shipping","taxTax":"Tax","totalSubtotal":"Subtotal","totalTotal":"Total"}, true);
+	/*INIT-END*/
+	});
+
+   JotForm.prepareCalculationsOnTheFly([null,{"name":"youCan","qid":"1","text":"You Can Order Now","type":"control_head"},null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,{"name":"menu","qid":"22","text":"Menu","type":"control_paypalcomplete"},{"name":"paymentMethods","qid":"23","text":"Payment Methods","type":"control_paymentmethods"},{"name":"submit","qid":"24","text":"Submit","type":"control_button"}]);
+   setTimeout(function() {
+JotForm.paymentExtrasOnTheFly([null,{"name":"youCan","qid":"1","text":"You Can Order Now","type":"control_head"},null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,{"name":"menu","qid":"22","text":"Menu","type":"control_paypalcomplete"},{"name":"paymentMethods","qid":"23","text":"Payment Methods","type":"control_paymentmethods"},{"name":"submit","qid":"24","text":"Submit","type":"control_button"}]);}, 20); 
+</script>
+<style type="text/css">@media print{.form-section{display:inline!important}.form-pagebreak{display:none!important}.form-section-closed{height:auto!important}.page-section{position:initial!important}}</style>
+<link type="text/css" rel="stylesheet" href="https://cdn01.jotfor.ms/themes/CSS/5e6b428acc8c4e222d1beb91.css?themeRevisionID=5f30e2a790832f3e96009402"/>
+<link type="text/css" rel="stylesheet" href="https://cdn02.jotfor.ms/css/styles/payment/payment_styles.css?3.3.37780" />
+<link type="text/css" rel="stylesheet" href="https://cdn03.jotfor.ms/css/styles/payment/payment_feature.css?3.3.37780" />
+<style type="text/css" id="form-designer-style">
+    /* Injected CSS Code */
+/*PREFERENCES STYLE*/
+   
+    /* Injected CSS Code */
+</style>
+
+<form class="jotform-form" action="https://submit.jotform.co/submit/223383523322550/" method="post" name="form_223383523322550" id="223383523322550" accept-charset="utf-8" autocomplete="on"><input type="hidden" name="formID" value="223383523322550" /><input type="hidden" id="JWTContainer" value="" /><input type="hidden" id="cardinalOrderNumber" value="" />
+  <div role="main" class="form-all">
+    <style>
+      .form-all:before
+      {
+        background: none;
+      }
+    </style>
+    <ul class="form-section page-section">
+      <li id="cid_1" class="form-input-wide" data-type="control_head">
+        <div style="display:table;width:100%">
+          <div class="form-header-group hasImage header-large" data-imagealign="Right">
+            <div class="header-text httac htvam">
+              <h1 id="header_1" class="form-header" data-component="header">You Can Order Now</h1>
+              <div id="subHeader_1" class="form-subHeader">Delight &amp; Joy</div>
+            </div>
+            <div class="header-logo"><img src="https://www.jotform.com/uploads/ugurg/form_files/Order-Food.63889d6e35b188.28207191.png" alt="" width="340" class="header-logo-right" /></div>
+          </div>
+        </div>
+      </li>
+      <li class="form-line card-3col" data-type="control_paypalcomplete" id="id_22" data-payment="true"><label class="form-label form-label-top search-enabled product-sorting-enabled category-enabled p-filter-three-column" id="label_22" for="input_22"> Menu </label>
+        <div id="cid_22" class="form-input-wide" data-layout="full">
+          <div data-wrapper-react="true">
+            <div data-wrapper-react="true" class="product-container-wrapper">
+              <div class="filter-container">
+                
+               
+              </div><input type="hidden" name="simple_fpc" data-payment_type="paypalcomplete" data-component="payment1" value="22" /><input type="hidden" name="payment_total_checksum" id="payment_total_checksum" data-component="payment2" />
+             
+              <div data-wrapper-react="true"><span class="form-product-category-item  " category="2002"><b>Soups</b><span class="selected-items-icon"></span></span><span class="form-product-item hover-product-item on_col1 show_image show_desc show_option new_ui" categories="2002" active-category="2002" pid="1004" aria-labelledby="label_22">
+                  
+                </span>
+                
+                
+                <div class="p_item_separator last_p_seperator"></div><span class="form-product-category-item  " category="2003"><b>Salads</b><span class="selected-items-icon"></span></span><span class="form-product-item hover-product-item on_col1 show_image show_desc show_option new_ui" categories="2003" active-category="2003" pid="1006" aria-labelledby="label_22">
+                  
+                </span>
+                <div class="p_item_separator "></div><span class="form-product-item hover-product-item on_col2 show_image show_desc show_option new_ui" categories="2003" active-category="2003" pid="1007" aria-labelledby="label_22">
+                  <div data-wrapper-react="true" class="form-product-item-detail new_ui">
+                    <div class="p_col">
+                      <div class="p_checkbox"><input type="checkbox" class="form-checkbox  form-product-input" id="input_22_1007" name="q22_menu[][id]" value="1007" />
+                        <div class="checked"></div>
+                        <div class="select_border"></div>
+                      </div>
+                    </div>
+                    <div class="p_image">
+                      <div role="img" aria-label="Cranberry Pecan Blue" class="image_area form-product-image-with-options">
+                        <div style="position:absolute;width:100%;height:100%"><img role="img" aria-label="Cranberry Pecan Blue" style="width:100%;height:100%;object-fit:cover" src="https://www.jotform.com/uploads/BellatrixL/form_files/Screen%20Shot%202020-07-07%20at%2020.57.11.png" loading="lazy" /></div>
+                        <div class="image_zoom"></div>
+                      </div>
+                    </div>
+                    <div for="input_22_1007" class="form-product-container"><span data-wrapper-react="true">
+                        <div class="title_description"><span class="form-product-name" id="product-name-input_22_1007">Cranberry Pecan Blue</span><span class="form-product-description" id="product-name-description-input_22_1007">A mixed green salad toped with spiced pecans, blue cheese, and cranberries served with a balsamic vinaigrette</span></div><span class="form-product-details"><b><span data-wrapper-react="true">$<span id="input_22_1007_price">8.00</span></span></b></span>
+                      </span><span class="form-sub-label-container" style="vertical-align:top"><label class="form-sub-label" for="input_22_quantity_1007_0" style="min-height:13px" aria-hidden="false">Quantity</label><span class="select_cont"><select class="form-dropdown" name="q22_menu[special_1007][item_0]" id="input_22_quantity_1007_0">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                          </select></span> </span></div>
+                    <div class="focus_action_button_container"><a class="btn-inline-product-delete"> </a><a class="btn-inline-product-settings"> </a></div>
+                  </div>
+                </span>
+                <div class="p_item_separator "></div><span class="form-product-item hover-product-item on_col3 show_image show_desc show_option new_ui" categories="2003" active-category="2003" pid="1008" aria-labelledby="label_22">
+                  <div data-wrapper-react="true" class="form-product-item-detail new_ui">
+                    <div class="p_col">
+                      <div class="p_checkbox"><input type="checkbox" class="form-checkbox  form-product-input" id="input_22_1008" name="q22_menu[][id]" value="1008" />
+                        <div class="checked"></div>
+                        <div class="select_border"></div>
+                      </div>
+                    </div>
+                    <div class="p_image">
+                      <div role="img" aria-label="Spinach Salad" class="image_area form-product-image-with-options">
+                        <div style="position:absolute;width:100%;height:100%"><img role="img" aria-label="Spinach Salad" style="width:100%;height:100%;object-fit:cover" src="https://www.jotform.com/uploads/BellatrixL/form_files/Screen%20Shot%202020-07-07%20at%2021.02.49.png" loading="lazy" /></div>
+                        <div class="image_zoom"></div>
+                      </div>
+                    </div>
+                    <div for="input_22_1008" class="form-product-container"><span data-wrapper-react="true">
+                        <div class="title_description"><span class="form-product-name" id="product-name-input_22_1008">Spinach Salad</span><span class="form-product-description" id="product-name-description-input_22_1008">Served with crumbled bacon and an orange vinaigrette</span></div><span class="form-product-details"><b><span data-wrapper-react="true">$<span id="input_22_1008_price">9.00</span></span></b></span>
+                      </span><span class="form-sub-label-container" style="vertical-align:top"><label class="form-sub-label" for="input_22_quantity_1008_0" style="min-height:13px" aria-hidden="false">Quantity</label><span class="select_cont"><select class="form-dropdown" name="q22_menu[special_1008][item_0]" id="input_22_quantity_1008_0">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                          </select></span> </span></div>
+                    <div class="focus_action_button_container"><a class="btn-inline-product-delete"> </a><a class="btn-inline-product-settings"> </a></div>
+                  </div>
+                </span>
+                <div class="p_item_separator last_p_seperator"></div><span class="form-product-category-item  " category="2004"><b>Sandwiches</b><span class="selected-items-icon"></span></span><span class="form-product-item hover-product-item on_col1 show_image show_desc show_option new_ui" categories="2004" active-category="2004" pid="1009" aria-labelledby="label_22">
+                  <div data-wrapper-react="true" class="form-product-item-detail new_ui">
+                    <div class="p_col">
+                      <div class="p_checkbox"><input type="checkbox" class="form-checkbox  form-product-input" id="input_22_1009" name="q22_menu[][id]" value="1009" />
+                        <div class="checked"></div>
+                        <div class="select_border"></div>
+                      </div>
+                    </div>
+                    <div class="p_image">
+                      <div role="img" aria-label="House Roasted Turkey Club" class="image_area form-product-image-with-options">
+                        <div style="position:absolute;width:100%;height:100%"><img role="img" aria-label="House Roasted Turkey Club" style="width:100%;height:100%;object-fit:cover" src="https://www.jotform.com/uploads/BellatrixL/form_files/Screen%20Shot%202020-07-07%20at%2021.03.40.png" loading="lazy" /></div>
+                        <div class="image_zoom"></div>
+                      </div>
+                    </div>
+                    <div for="input_22_1009" class="form-product-container"><span data-wrapper-react="true">
+                        <div class="title_description"><span class="form-product-name" id="product-name-input_22_1009">House Roasted Turkey Club</span><span class="form-product-description" id="product-name-description-input_22_1009">With bacon, cheddar, avocado, lettuce, and tomato. Served with chips</span></div><span class="form-product-details"><b><span data-wrapper-react="true">$<span id="input_22_1009_price">9.00</span></span></b></span>
+                      </span><span class="form-sub-label-container" style="vertical-align:top"><label class="form-sub-label" for="input_22_quantity_1009_0" style="min-height:13px" aria-hidden="false">Quantity</label><span class="select_cont"><select class="form-dropdown" name="q22_menu[special_1009][item_0]" id="input_22_quantity_1009_0">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                          </select></span> </span></div>
+                    <div class="focus_action_button_container"><a class="btn-inline-product-delete"> </a><a class="btn-inline-product-settings"> </a></div>
+                  </div>
+                </span>
+                <div class="p_item_separator "></div><span class="form-product-item hover-product-item on_col2 show_image show_desc show_option new_ui" categories="2004" active-category="2004" pid="1010" aria-labelledby="label_22">
+                  <div data-wrapper-react="true" class="form-product-item-detail new_ui">
+                    <div class="p_col">
+                      <div class="p_checkbox"><input type="checkbox" class="form-checkbox  form-product-input" id="input_22_1010" name="q22_menu[][id]" value="1010" />
+                        <div class="checked"></div>
+                        <div class="select_border"></div>
+                      </div>
+                    </div>
+                    <div class="p_image">
+                      <div role="img" aria-label="Hot Italian Grinder" class="image_area form-product-image-with-options">
+                        <div style="position:absolute;width:100%;height:100%"><img role="img" aria-label="Hot Italian Grinder" style="width:100%;height:100%;object-fit:cover" src="https://www.jotform.com/uploads/BellatrixL/form_files/Screen%20Shot%202020-07-07%20at%2021.10.24.png" loading="lazy" /></div>
+                        <div class="image_zoom"></div>
+                      </div>
+                    </div>
+                    <div for="input_22_1010" class="form-product-container"><span data-wrapper-react="true">
+                        <div class="title_description"><span class="form-product-name" id="product-name-input_22_1010">Hot Italian Grinder</span><span class="form-product-description" id="product-name-description-input_22_1010">Salami, ham, and provolone, oven toasted in a grinder roll and served with chips</span></div><span class="form-product-details"><b><span data-wrapper-react="true">$<span id="input_22_1010_price">9.00</span></span></b></span>
+                      </span><span class="form-sub-label-container" style="vertical-align:top"><label class="form-sub-label" for="input_22_quantity_1010_0" style="min-height:13px" aria-hidden="false">Quantity</label><span class="select_cont"><select class="form-dropdown" name="q22_menu[special_1010][item_0]" id="input_22_quantity_1010_0">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                          </select></span> </span></div>
+                    <div class="focus_action_button_container"><a class="btn-inline-product-delete"> </a><a class="btn-inline-product-settings"> </a></div>
+                  </div>
+                </span>
+                <div class="p_item_separator "></div><span class="form-product-item hover-product-item on_col3 show_image show_desc show_option new_ui" categories="2004" active-category="2004" pid="1011" aria-labelledby="label_22">
+                  <div data-wrapper-react="true" class="form-product-item-detail new_ui">
+                    <div class="p_col">
+                      <div class="p_checkbox"><input type="checkbox" class="form-checkbox  form-product-input" id="input_22_1011" name="q22_menu[][id]" value="1011" />
+                        <div class="checked"></div>
+                        <div class="select_border"></div>
+                      </div>
+                    </div>
+                    <div class="p_image">
+                      <div role="img" aria-label="The BLT+AA" class="image_area form-product-image-with-options">
+                        <div style="position:absolute;width:100%;height:100%"><img role="img" aria-label="The BLT+AA" style="width:100%;height:100%;object-fit:cover" src="https://www.jotform.com/uploads/BellatrixL/form_files/Screen%20Shot%202020-07-07%20at%2021.10.41.png" loading="lazy" /></div>
+                        <div class="image_zoom"></div>
+                      </div>
+                    </div>
+                    <div for="input_22_1011" class="form-product-container"><span data-wrapper-react="true">
+                        <div class="title_description"><span class="form-product-name" id="product-name-input_22_1011">The BLT+AA</span><span class="form-product-description" id="product-name-description-input_22_1011">Classic BLT plus our twist of fresh avocado on toasted wheat bread.Served with chips</span></div><span class="form-product-details"><b><span data-wrapper-react="true">$<span id="input_22_1011_price">7.00</span></span></b></span>
+                      </span><span class="form-sub-label-container" style="vertical-align:top"><label class="form-sub-label" for="input_22_quantity_1011_0" style="min-height:13px" aria-hidden="false">Quantity</label><span class="select_cont"><select class="form-dropdown" name="q22_menu[special_1011][item_0]" id="input_22_quantity_1011_0">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                          </select></span> </span></div>
+                    <div class="focus_action_button_container"><a class="btn-inline-product-delete"> </a><a class="btn-inline-product-settings"> </a></div>
+                  </div>
+                </span>
+                <div class="p_item_separator last_p_seperator"></div><span class="form-product-category-item  " category="2005"><b>Burgers</b><span class="selected-items-icon"></span></span><span class="form-product-item hover-product-item on_col1 show_image show_desc show_option new_ui" categories="2005" active-category="2005" pid="1013" aria-labelledby="label_22">
+                  <div data-wrapper-react="true" class="form-product-item-detail new_ui">
+                    <div class="p_col">
+                      <div class="p_checkbox"><input type="checkbox" class="form-checkbox  form-product-input" id="input_22_1013" name="q22_menu[][id]" value="1013" />
+                        <div class="checked"></div>
+                        <div class="select_border"></div>
+                      </div>
+                    </div>
+                    <div class="p_image">
+                      <div role="img" aria-label="Classic Hamburger" class="image_area form-product-image-with-options">
+                        <div style="position:absolute;width:100%;height:100%"><img role="img" aria-label="Classic Hamburger" style="width:100%;height:100%;object-fit:cover" src="https://www.jotform.com/uploads/BellatrixL/form_files/Screen%20Shot%202020-07-07%20at%2021.13.19.png" loading="lazy" /></div>
+                        <div class="image_zoom"></div>
+                      </div>
+                    </div>
+                    <div for="input_22_1013" class="form-product-container"><span data-wrapper-react="true">
+                        <div class="title_description"><span class="form-product-name" id="product-name-input_22_1013">Classic Hamburger</span><span class="form-product-description" id="product-name-description-input_22_1013">A half pound of flame broiled angus beef served with french fries</span></div><span class="form-product-details"><b><span data-wrapper-react="true">$<span id="input_22_1013_price">10.00</span></span></b></span>
+                      </span><span class="form-sub-label-container" style="vertical-align:top"><label class="form-sub-label" for="input_22_quantity_1013_0" style="min-height:13px" aria-hidden="false">Quantity</label><span class="select_cont"><select class="form-dropdown" name="q22_menu[special_1013][item_0]" id="input_22_quantity_1013_0">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                          </select></span> </span></div>
+                    <div class="focus_action_button_container"><a class="btn-inline-product-delete"> </a><a class="btn-inline-product-settings"> </a></div>
+                  </div>
+                </span>
+
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="form-line" data-type="control_button" id="id_24">
+        <div id="cid_24" class="form-input-wide" data-layout="full">
+          <div data-align="auto" class="form-buttons-wrapper form-buttons-auto   jsTest-button-wrapperField"><button id="input_24" type="submit" class="form-submit-button submit-button jf-form-buttons jsTest-submitField" data-component="button" data-content=""routerLink="/test">Submit</button></div>
+        </div>
+      </li>
+   
+      <li style="display:none">Should be Empty: <input type="text" name="website" value="" /></li>
+    </ul>
+  </div>
+  <script>
+    JotForm.showJotFormPowered = "new_footer";
+  </script>
+  <script>
+    JotForm.poweredByText = "Powered by Jotform";
+  </script><input type="hidden" class="simple_spc" id="simple_spc" name="simple_spc" value="223383523322550" />
+  <script type="text/javascript">
+    var all_spc = document.querySelectorAll("form[id='223383523322550'] .si" + "mple" + "_spc");
+    for (var i = 0; i < all_spc.length; i++)
+    {
+      all_spc[i].value = "223383523322550-223383523322550";
+    }
+  </script>
+  <div class="formFooter-heightMask"></div>
+  
+</form><script type="text/javascript">JotForm.ownerView=true;</script><script src="https://cdn.jotfor.ms//js/vendor/smoothscroll.min.js?v=3.3.37780"></script>
+<script src="https://cdn.jotfor.ms//js/errorNavigation.js?v=3.3.37780"></script> -->
+<app-contact-imfo></app-contact-imfo>
+   <app-footer></app-footer>

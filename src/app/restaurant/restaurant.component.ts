@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CommandeIthem } from 'src/model/commandeIthem';
 import { Menus } from 'src/model/Menus';
 import { Restaurants } from 'src/model/Restaurants';
+import { CommandeIthemService } from '../service/commande-ithem.service';
 import { MenuService } from '../service/menu.service';
 import { RestaurantService } from '../service/restaurant.service';
 
@@ -12,7 +14,11 @@ import { RestaurantService } from '../service/restaurant.service';
 })
 export class RestaurantComponent implements OnInit {
 
-  constructor(private rou:Router,private route:ActivatedRoute, private restoSev :RestaurantService, private menuServise: MenuService) { }
+  constructor(private rou:Router,
+    private route:ActivatedRoute,
+     public restoSev :RestaurantService,
+      private menuServise: MenuService,
+      private  commandeItemService:CommandeIthemService) { }
   id:number=0;
   // comm c = new comm()
   menu:Menus[]=[]
@@ -68,12 +74,24 @@ loadScripts() {
     "assets/js/custom.js"
   ];
 
-for (let i = 0; i < dynamicScripts.length; i++) {
+  for (let i = 0; i < dynamicScripts.length; i++) {
   const node = document.createElement('script');
   node.src = dynamicScripts[i];
   node.type = 'text/javascript';
   node.async = false;
   document.getElementsByTagName('body')[0].appendChild(node);
 }
+}
+
+addToCart(item:Menus)
+{
+  console.log("item" , item)
+  /* item['Menu'].name = item.name
+  console.log("name",item.name);
+  
+  item['Menu'].price = item.price
+  item['Menu'].description = item.description
+  item['Menu'].photo = item.photo */
+  this.commandeItemService.addToCart(item);
 }
 }

@@ -32,6 +32,8 @@ import { HeaderGestionUserOnsComponent } from './header-gestion-user-ons/header-
 import { HeaderGestionUserAdminComponent } from './header-gestion-user-admin/header-gestion-user-admin.component';
 import { CommandeIthemComponent } from './commande-ithem/commande-ithem.component';
 import { ModifierMenuComponent } from './modifier-menu/modifier-menu.component';
+import { CommandeComponent } from './commande/commande.component';
+import { TestComponent } from './test/test.component';
 
 
 @NgModule({
@@ -49,7 +51,7 @@ import { ModifierMenuComponent } from './modifier-menu/modifier-menu.component';
     StuffComponent,
     GalleryComponent,
     ContactComponent,
-    
+    CommandeComponent,
     InscriptionComponent,
     NavAdminComponent,
     AdminNavComponent,
@@ -66,6 +68,8 @@ import { ModifierMenuComponent } from './modifier-menu/modifier-menu.component';
          HeaderGestionUserAdminComponent,
          CommandeIthemComponent,
          ModifierMenuComponent,
+         TestComponent,
+         
     
     
   ],
